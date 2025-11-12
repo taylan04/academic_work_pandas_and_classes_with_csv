@@ -66,9 +66,10 @@ class Cliente():
         self.restaurantes_favoritos = []
 
     def favoritar_restaurante(self, restaurante):
-        self.restaurantes_favoritos = set()
-        self.restaurantes_favoritos.add(restaurante)
-        self.restaurantes_favoritos = list(self.restaurantes_favoritos)
+        if restaurante in self.restaurantes_favoritos:
+            print("Restaurante já favoritado.")
+            return
+        self.restaurantes_favoritos.append(restaurante)
     
     def desfavoritar_restaurante(self, restaurante):
         if restaurante in self.restaurantes_favoritos:
@@ -77,6 +78,11 @@ class Cliente():
             print("Restaurante não encontrado.")
 
     def listar_favoritos(self):
+        favoritos = []
+        if not self.restaurantes_favoritos:
+            return "Lista de favoritos vazia."
+
         for restaurante in self.restaurantes_favoritos:
-            print(f"\n{restaurante}")
+            favoritos.append(restaurante.nome)
+        return favoritos
 
