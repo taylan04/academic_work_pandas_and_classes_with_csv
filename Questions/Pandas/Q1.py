@@ -17,10 +17,11 @@ def type_of_columns(df):
     for column in columns:
         print(f"\nColumn: {column} | Type: {type(column)}")
 
-def list_tree_registers(df):
+def list_three_registers(df):
     print(f"\n{df.head(3)}\n")
 
-df = read_csv()
-count_columns_and_lines(df)
-type_of_columns(df)
-list_tree_registers(df)
+if __name__ == "__main__":
+    df = read_csv()
+    count_columns_and_lines(df)
+    type_of_columns(df)
+    list_three_registers(df)

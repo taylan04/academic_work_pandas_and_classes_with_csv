@@ -29,7 +29,8 @@ def clean_dataframe(df):
     new_df = clean_prices_null_or_invalid(new_df)
     new_df = standardize_column_category(new_df)
     new_df = remove_extra_spaces(new_df)
-    print(f"\nRemoved: {len(df) - len(new_df)} | Total final: {len(new_df)}\n")
+    return f"\nRemoved: {len(df) - len(new_df)} | Total final: {len(new_df)}\n"
 
-df = read_csv()
-clean_dataframe(df)
+if __name__ == "__main__":
+    df = read_csv()
+    print(clean_dataframe(df))

@@ -23,5 +23,6 @@ def apply_functions_dataframe(df):
     new_df = add_column_count_char_name_item(new_df)
     return new_df
 
-df = read_csv()
-print(apply_functions_dataframe(df))
+if __name__ == "__main__":
+    df = read_csv()
+    print(apply_functions_dataframe(df))
