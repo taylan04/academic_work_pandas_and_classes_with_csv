@@ -1,6 +1,6 @@
 id_pedido,nome_cliente,nome_restaurante,bairro,item,categoria,preco,avaliacao
-1,Ana,Borogodó Lanches,Centro,Guaraná,bebida,8.35,1
-2,Bruno,Sabor & Cia,Rio Comprido,Refrigerante Lata,bebida,5.45,2
+1,Ana,Borogodó Lanches,Centro,Guaraná,Bebida,8.35,1
+2,Bruno,Sabor & Cia,Rio Comprido,Refrigerante Lata,Bebida,5.45,2
 3,João,Casa Nordestina,Catete,Risoto de Camarão,prato,27.95,5
 4,Pedro,La Pasta,Botafogo,Milkshake de Chocolate,bebida,9.17,1
 5,Rafa,Rio Sushi,Flamengo,Água com Gás,bebida,7.33,3
