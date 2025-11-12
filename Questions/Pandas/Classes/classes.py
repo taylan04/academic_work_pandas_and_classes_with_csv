@@ -55,7 +55,7 @@ class Restaurante():
         
     def listar_itens_por_categoria(self, categoria):
         for item in self.colecao:
-            if item['categoria'] == categoria:
+            if item['categoria'].lower() == categoria.lower():
                 print(f"\n{item}")
             
 class Cliente():
@@ -66,7 +66,9 @@ class Cliente():
         self.restaurantes_favoritos = []
 
     def favoritar_restaurante(self, restaurante):
-        self.restaurantes_favoritos.append(restaurante)
+        self.restaurantes_favoritos = set()
+        self.restaurantes_favoritos.add(restaurante)
+        self.restaurantes_favoritos = list(self.restaurantes_favoritos)
     
     def desfavoritar_restaurante(self, restaurante):
         if restaurante in self.restaurantes_favoritos:
