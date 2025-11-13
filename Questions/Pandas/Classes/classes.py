@@ -35,16 +35,13 @@ class Restaurante():
         self.colecao = []
 
     def adicionar_item(self, novo_item):
-        if self.colecao:
+        if novo_item in self.colecao:
+            print(f"\n O item {novo_item['nome']} já existe.")
+            return
+        else:
             self.colecao.append(novo_item)
-
-        for item in self.colecao:
-            if item['nome'].lower() == novo_item['nome'].lower() or item['categoria'].lower() == novo_item['categoria'].lower():
-                print("\nEsse item já existe.")
-                return
-            else:
-                self.colecao.append(novo_item)
-                print("\nItem adicionado.")
+            print(f"{novo_item['nome']} adicionado.")
+            return
     
     def buscar_item_por_nome(self, nome_item):
         for item in self.colecao:

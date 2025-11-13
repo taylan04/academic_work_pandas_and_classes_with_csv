@@ -9,7 +9,10 @@ print(dish2.descricao())
 
 restaurant1 = Restaurante("Paris 6", "São Paulo")
 restaurant1.adicionar_item({'nome': dish1.nome, 'categoria': 'Prato', 'preco': dish1.preco, 'notas': dish1.notas})
+restaurant1.adicionar_item({'nome': dish2.nome, 'categoria': 'Prato', 'preco': dish2.preco, 'notas': dish2.notas})
+restaurant1.adicionar_item({'nome': drink1.nome, 'categoria': 'Bebida', 'preco': drink1.preco, 'notas': drink1.notas})
 print(restaurant1.colecao)
+print(restaurant1.listar_itens_por_categoria('Prato'))
 
 restaurant2 = Restaurante("Casa Velha", "Rio de Janeiro")
 
