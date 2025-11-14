@@ -164,6 +164,22 @@ def questao_nove():
     resultado = consultas.media_por_bairro(bairro2)
     print(f"\nMédia das médias dos restaurantes de {bairro2}: {resultado}")
 
+def questao_dez():
+    def ranking_restaurantes(df):
+        agrupado = df.groupby("nome_restaurante")["avaliacao"].agg(media="mean",quantidade_avaliacoes="count")
+        ranking = round(agrupado.sort_values(by=["media", "quantidade_avaliacoes"],ascending=[False, False]).head(3),2)
+        return ranking[["media", "quantidade_avaliacoes"]]
+    
+    def ranking_itens(df):
+        agrupado = df.groupby(["item", "preco"])["avaliacao"].agg(media="mean",qtd="count").reset_index()
+        ranking = round(agrupado.sort_values(by=["media", "preco"],ascending=[False, True]).head(3),2)
+        return ranking[["item", "media", "preco", "qtd"]]
+
+    df = ler_csv_com_pandas()
+    print(f"\n{ranking_restaurantes(df)}")
+    print(f"\n{ranking_itens(df)}")
+
 #questoes_cinco_seis_sete()
 #questao_oito()
-questao_nove()
+#questao_nove()
+#questao_dez()
