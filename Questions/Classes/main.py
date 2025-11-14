@@ -3,6 +3,8 @@ from Cliente import *
 from Restaurante import *
 from consultas import *
 from arquivo import *
+from Q8 import *
+from Q10 import *
 
 def questoes_cinco_seis_sete():
     # pratos e bebidas
@@ -81,53 +83,12 @@ def questoes_cinco_seis_sete():
     print(cliente2.listar_favoritos())
 
 def questao_oito():
-    def salvar_restaurantes(doc):
-        restaurantes = []
-        for item in doc:
-            restaurantes.append(f"{item[2]},{item[3]}")
-        return set(restaurantes)
-
-    def listar_restaurantes_em_objetos(lista_restaurantes):
-        restaurantes = []
-        for item in lista_restaurantes:
-            item = item.split(",")
-            restaurante = Restaurante(item[0], item[1])
-            restaurantes.append(restaurante)
-        return restaurantes
-
-    def adicionar_item(catalogo, restaurante, nome, preco, categoria):
-        for item in catalogo:
-            if (item['nome'] == nome and
-                item['preco'] == preco and
-                item['categoria'] == categoria):
-                return
-
-        catalogo.append({"restaurante": restaurante, "nome": nome, "preco": preco, "categoria": categoria})
-
-    def catalogar_pratos(doc):
-        catalogo = []
-        doc = [item for item in doc if item[5].lower() == 'prato']
-        for item in doc:
-            adicionar_item(catalogo, item[2], item[4], item[6], item[5])
-
-        return catalogo
-
-    def catalogar_bebidas(doc):
-        catalogo = []
-        doc = [item for item in doc if item[5].lower() == 'bebida']
-        for item in doc:
-            adicionar_item(catalogo, item[2], item[4], item[6], item[5])
-
-        return catalogo
-
-    #def adicionar_pratos_em_restaurantes(restaurantes, pratos):
         
     doc = ler_arquivo()
     restaurantes = salvar_restaurantes(doc)
     restaurantes = listar_restaurantes_em_objetos(restaurantes)
     pratos = catalogar_pratos(doc)
     bebidas = catalogar_bebidas(doc)
-    #adicionar_pratos_em_restaurantes(restaurantes, pratos)
 
     '''for r in restaurantes:
         print(f"{r.nome}, {r.bairro}")'''
@@ -165,21 +126,22 @@ def questao_nove():
     print(f"\nMédia das médias dos restaurantes de {bairro2}: {resultado}")
 
 def questao_dez():
-    def ranking_restaurantes(df):
-        agrupado = df.groupby("nome_restaurante")["avaliacao"].agg(media="mean",quantidade_avaliacoes="count")
-        ranking = round(agrupado.sort_values(by=["media", "quantidade_avaliacoes"],ascending=[False, False]).head(3),2)
-        return ranking[["media", "quantidade_avaliacoes"]]
-    
-    def ranking_itens(df):
-        agrupado = df.groupby(["item", "preco"])["avaliacao"].agg(media="mean",qtd="count").reset_index()
-        ranking = round(agrupado.sort_values(by=["media", "preco"],ascending=[False, True]).head(3),2)
-        return ranking[["item", "media", "preco", "qtd"]]
-
     df = ler_csv_com_pandas()
     print(f"\n{ranking_restaurantes(df)}")
     print(f"\n{ranking_itens(df)}")
 
+def questao_doze():
+    '''doc = ler_arquivo()
+    restaurantes = salvar_restaurantes(doc)
+    restaurantes = listar_restaurantes_em_objetos(restaurantes)
+    salvar_restaurantes_no_arquivo(restaurantes)'''
+
+    df = ler_csv_com_pandas()
+    salvar_ranking_restaurante(ranking_restaurantes(df))
+    salvar_ranking_itens(ranking_itens(df))
+
 #questoes_cinco_seis_sete()
 #questao_oito()
 #questao_nove()
-#questao_dez()
+questao_dez()
+#questao_doze()
