@@ -1,4 +1,5 @@
 import csv
+import pandas as pd
 
 def ler_arquivo():
     restaurantes = []
@@ -10,4 +11,8 @@ def ler_arquivo():
     except Exception as ex:
         print(f"{ex}")
     return restaurantes[1:]
+
+def ler_csv_com_pandas():
+    df = pd.read_csv("pedidos_e_avaliacoes.csv")
+    return df
         

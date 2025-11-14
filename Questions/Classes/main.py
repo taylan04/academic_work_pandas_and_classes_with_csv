@@ -1,6 +1,7 @@
 from Produtos import *
 from Cliente import *
 from Restaurante import *
+from consultas import *
 from arquivo import *
 
 def questoes_cinco_seis_sete():
@@ -128,13 +129,41 @@ def questao_oito():
     bebidas = catalogar_bebidas(doc)
     #adicionar_pratos_em_restaurantes(restaurantes, pratos)
 
+    '''for r in restaurantes:
+        print(f"{r.nome}, {r.bairro}")'''
+    
     print("\nResultados de acordo com a unicidade por (nome, preço, categoria):")
     print(f"Quantidade de pratos únicos: {len(pratos)}")
     print(f"Quantidade de bebidas únicas: {len(bebidas)}")
     for restaurante in restaurantes[:3]:
         print(f"Restaurante: {restaurante.nome} | Bairro: {restaurante.bairro}")
 
+#Pandas
 def questao_nove():
+    consultas = EstatisticasCatalogo()
+    print("\nquantidade de restaurantes com media() ≥ media_min.")
+    media_min = float(input("\nDigite uma média mínima: "))
+    consultas.restaurantes_com_media_min(media_min)
+    
+    print("\nquantos restaurantes no bairro têm pelo menos min_itens_avaliados (itens com ≥1 nota).")
+    bairro = input("\nDigite um bairro do Rio: ")
+    min_itens_avaliados = int(input("\nMínimo de itens avaliados: "))
+    quantidade = consultas.restaurantes_por_bairro(bairro, min_itens_avaliados)
+    print(f"\nQuantidade de restaurantes no bairro: {quantidade}")
+
+    print("\nlista de itens da categoria que passam nos filtros (mínimo de notas, preço máximo e/ou média mínima).")
+    categoria = input("\nDigite a categoria: ")
+    min_notas = int(input("\nMínimo de notas: "))
+    maximo = float(input("\nQual o preço máximo: "))
+    media = float(input("\nQual a média mínima: "))
+    resultado = consultas.itens_filtrados(categoria, min_notas, maximo, media)
+    print(resultado)
+
+    print("\nmédia das médias dos restaurantes do bairro, ignorando quem não tem média.")
+    bairro2 = input("\nDigite o bairro: ")
+    resultado = consultas.media_por_bairro(bairro2)
+    print(f"\nMédia das médias dos restaurantes de {bairro2}: {resultado}")
 
 #questoes_cinco_seis_sete()
 #questao_oito()
+questao_nove()

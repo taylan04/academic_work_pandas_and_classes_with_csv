@@ -2,10 +2,6 @@ from file import *
 
 #Question 1
 
-def read_csv():
-    df = pd.read_csv("pedidos_e_avaliacoes.csv")
-    return df
-
 def count_columns_and_lines(df):
     columns = len(df.columns)
     lines = len(df)
