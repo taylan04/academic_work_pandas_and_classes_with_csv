@@ -1,47 +1,27 @@
 #Part of it was written in Portuguese due to academic requirements.
 
 class Prato():
-    def __init__(self,nome,preco):
+    def __init__(self,nome,preco,notas):
         if len(nome) <= 2:
             raise ValueError("O nome do prato deve ter mais de 2 caracteres.")
         self.nome = nome
         if preco <= 0:
             raise ValueError("O preço do prato deve ser maior que zero.")
         self.preco = preco
-        self.notas = []
-
-    def adicionar_nota(self, nota):
-        if not (nota > 0 or nota < 6):
-            raise ValueError("A nota deve estar entre 1 e 5.")
-        self.notas.append(nota)
-
-    def consultar_media(self):
-        if not self.notas:
-            return None
-        return sum(self.notas) / len(self.notas)
+        self.notas = notas
 
     def descricao(self):
         return f"Prato: {self.nome} | Preço: {self.preco:.2f}"
     
 class Bebida():
-    def __init__(self,nome,preco):
+    def __init__(self,nome,preco,notas):
         if len(nome) <= 2:
             raise ValueError("O nome deve ter mais de 2 caracteres.")
         self.nome = nome
         if preco <= 0:
             raise ValueError("O preço da bebida deve ser maior que zero.")
         self.preco = preco
-        self.notas = []
-
-    def adicionar_nota(self, nota):
-        if not (nota > 0 or nota < 6):
-            raise ValueError("A nota deve estar entre 1 e 5.")
-        self.notas.append(nota)
-
-    def consultar_media(self):
-        if not self.notas:
-            return None
-        return sum(self.notas) / len(self.notas)
+        self.notas = notas
 
     def descricao(self):
         return f"Bebida: {self.nome} | Preço da bebida: {self.preco:.2f}"
@@ -53,16 +33,18 @@ class Restaurante():
         self.nome = nome
         self.bairro = bairro
         self.colecao = []
-        self.notas = []
 
     def adicionar_item(self, novo_item):
-        if novo_item in self.colecao:
-            print(f"\n O item {novo_item['nome']} já existe.")
-            return
-        else:
+        if self.colecao:
             self.colecao.append(novo_item)
-            print(f"{novo_item['nome']} adicionado.")
-            return
+
+        for item in self.colecao:
+            if item['nome'].lower() == novo_item['nome'].lower() or item['categoria'].lower() == novo_item['categoria'].lower():
+                print("\nEsse item já existe.")
+                return
+            else:
+                self.colecao.append(novo_item)
+                print("\nItem adicionado.")
     
     def buscar_item_por_nome(self, nome_item):
         for item in self.colecao:
@@ -70,19 +52,6 @@ class Restaurante():
                 return item
             else:
                 return "\nItem não encontrado."
-            
-    def adicionar_nota(self, nota):
-        if not (nota > 0 or nota < 6):
-            raise ValueError("A nota deve estar entre 1 e 5.")
-        self.notas.append(nota)
-
-    def consultar_media_ponderada(self):
-        media_itens = 0
-        for item in self.colecao:
-            media_itens += len(item['notas'])
-        if not self.notas and media_itens == 0:
-            return None
-        return len(self.notas) / media_itens
         
     def listar_itens_por_categoria(self, categoria):
         for item in self.colecao:
