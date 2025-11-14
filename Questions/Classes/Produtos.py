@@ -1,8 +1,9 @@
 class Prato():
-    def __init__(self,nome,preco):
+    def __init__(self,nome,categoria,preco):
         if len(nome) <= 2:
             raise ValueError("O nome do prato deve ter mais de 2 caracteres.")
         self.nome = nome
+        self.categoria = categoria
         if preco <= 0:
             raise ValueError("O preço do prato deve ser maior que zero.")
         self.preco = preco
@@ -22,10 +23,11 @@ class Prato():
         return f"Prato: {self.nome} | Preço: {self.preco:.2f}"
     
 class Bebida():
-    def __init__(self,nome,preco):
+    def __init__(self,nome,categoria,preco):
         if len(nome) <= 2:
             raise ValueError("O nome deve ter mais de 2 caracteres.")
         self.nome = nome
+        self.categoria = categoria
         if preco <= 0:
             raise ValueError("O preço da bebida deve ser maior que zero.")
         self.preco = preco

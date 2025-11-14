@@ -13,7 +13,7 @@ class Restaurante():
             return
         else:
             self.colecao.append(novo_item)
-            print(f"{novo_item['nome']} adicionado.")
+            #print(f"{novo_item['nome']} adicionado.")
             return
     
     def buscar_item_por_nome(self, nome_item):

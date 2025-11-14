@@ -5,11 +5,11 @@ from arquivo import *
 
 def questoes_cinco_seis_sete():
     # pratos e bebidas
-    prato1 = Prato("Nhoque", 32.0)
-    prato2 = Prato("Sopa do dia", 18.0)
+    prato1 = Prato("Nhoque", "Prato", 32.0)
+    prato2 = Prato("Sopa do dia", "Prato", 18.0)
 
-    bebida1 = Bebida("Chá gelado", 9.0)
-    bebida2 = Bebida("Limonada", 8.0)
+    bebida1 = Bebida("Chá gelado", "Bebida", 9.0)
+    bebida2 = Bebida("Limonada", "Bebida", 8.0)
 
     prato1.adicionar_nota(5)
     prato1.adicionar_nota(5)
@@ -30,25 +30,25 @@ def questoes_cinco_seis_sete():
     restaurante1 = Restaurante("Ponto do Sabor", "Centro")
     restaurante1.adicionar_item({
         'nome': prato1.nome,
-        'categoria': 'Prato',
+        'categoria': prato1.categoria,
         'preco': prato1.preco,
         'notas': prato1.notas
     })
     restaurante1.adicionar_item({
         'nome': prato2.nome,
-        'categoria': 'Prato',
+        'categoria': prato2.categoria,
         'preco': prato2.preco,
         'notas': prato2.notas
     })
     restaurante1.adicionar_item({
         'nome': bebida1.nome,
-        'categoria': 'Bebida',
+        'categoria': bebida1.categoria,
         'preco': bebida1.preco,
         'notas': bebida1.notas
     })
     restaurante1.adicionar_item({
         'nome': bebida2.nome,
-        'categoria': 'Bebida',
+        'categoria': bebida2.categoria,
         'preco': bebida2.preco,
         'notas': bebida2.notas
     })
@@ -119,33 +119,22 @@ def questao_oito():
 
         return catalogo
 
-    '''
-    def adicionar_pratos_em_restaurantes(restaurantes, pratos):
-        aux = []
-        for r in restaurantes:
-            for d in pratos:
-                if r.name == d['restaurant']:
-                    aux.append(d)
-            r.add_items(aux)
-    '''
-
+    #def adicionar_pratos_em_restaurantes(restaurantes, pratos):
+        
     doc = ler_arquivo()
     restaurantes = salvar_restaurantes(doc)
     restaurantes = listar_restaurantes_em_objetos(restaurantes)
     pratos = catalogar_pratos(doc)
     bebidas = catalogar_bebidas(doc)
+    #adicionar_pratos_em_restaurantes(restaurantes, pratos)
 
-    '''print("\n== RESTAURANTES ==")
-    for r in restaurantes:
-        print(f"{r.nome}, {r.bairro}")
+    print("\nResultados de acordo com a unicidade por (nome, preço, categoria):")
+    print(f"Quantidade de pratos únicos: {len(pratos)}")
+    print(f"Quantidade de bebidas únicas: {len(bebidas)}")
+    for restaurante in restaurantes[:3]:
+        print(f"Restaurante: {restaurante.nome} | Bairro: {restaurante.bairro}")
 
-    print("\n== PRATOS ==")
-    for p in pratos:
-        print(f"{p}")
-
-    print("\n== BEBIDAS ==")
-    for b in bebidas:
-        print(f"{b}")'''
+def questao_nove():
 
 #questoes_cinco_seis_sete()
-questao_oito()
+#questao_oito()
